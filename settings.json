@@ -8,8 +8,8 @@
         "Banks": 
             [
                 {
-                    "BrandName":"Barclays UK", //MUST MATCH API BrandName VALUE
-                    "URL":"https://atlas.api.barclays:443/", //API URL
+                    "BrandName":"Barclays UK",
+                    "URL":"https://atlas.api.barclays:443/",
                     "IMG_DIR": "barclays.png"
                 },
                 {
