@@ -9,10 +9,11 @@ var i;
 var primaryData = [];
 
 for (i = 0; i < banks.length; i++) {
+  console.log(i);
   var data = [];
 
   //let postData = {};
-  var targetURL = banks[i]["ATM_URL"] + "open-banking/v2.2/atms";
+  var targetURL = banks[i]["URL"] + "open-banking/v2.2/atms";
   console.log(targetURL);
 
   var reqVal = new XMLHttpRequest();
