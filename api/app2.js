@@ -37,8 +37,14 @@ router.get("/atm", (req, res, next) => {
     const lng = parseFloat(req.query["lng"]);
     const dist = parseFloat(req.query["dist"]);
     const filtered = entries.filter(x => distance(x.lat, x.lng, lat, lng) <= dist);
-    console.log(filtered);
-    res.send("hello world: " + filtered.length);
+    const response = filtered.map(x => {
+        return {
+            lat: x.lat,
+            lng: x.lng,
+            id: x.atm.Identification
+        };
+    });
+    res.send(response);
 });
 const port = 3000;
 router.listen(port, () => console.log(`Listening on port ${port}.`));
