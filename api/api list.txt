@@ -1,0 +1,27 @@
+Barclays
+https://atlas.api.barclays:443/open-banking/v2.2/atms
+
+Bank of Scotland
+https://api.bankofscotland.co.uk/open-banking/v2.2/atms
+
+Halifax
+https://api.halifax.co.uk/open-banking/v2.2/atms
+
+HSBC
+https://api.hsbc.com/open-banking/v2.2/atms
+
+Lloyds
+https://api.lloydsbank.com/open-banking/v2.2/atms
+
+Nationwide
+https://locations.nationwidebranches.co.uk/open-banking/v2.2/branches
+
+Royal Bank of Scotland
+https://openapi.rbs.co.uk/open-banking/v2.2/atms
+
+Natwest
+https://openapi.natwest.com/open-banking/v2.2/atms
+
+Santander
+https://openbanking.santander.co.uk/sanuk/external/open-banking/v2.2/atms
+

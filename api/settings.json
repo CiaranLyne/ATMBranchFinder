@@ -1,0 +1,57 @@
+[
+    {
+        "Master":
+        {
+            "IMG_ICON_DIR": "/img/icons",
+            "IMG_BANNER_DIR": ""
+        },
+        "Banks": 
+            [
+                {
+                    "BrandName":"Barclays UK",
+                    "URL":"https://atlas.api.barclays:443/",
+                    "IMG_DIR": "barclays.png"
+                },
+                {
+                    "BrandName":"Bank of Scotland",
+                    "URL":"https://api.bankofscotland.co.uk/",
+                    "IMG_DIR": "bankofscotland.png"
+                },
+                {
+                    "BrandName":"Halifax",
+                    "URL":"https://api.halifax.co.uk/",
+                    "IMG_DIR": "halifax.png"
+                },
+                {
+                    "BrandName":"HSBC UK",
+                    "URL":"https://api.hsbc.com/",
+                    "IMG_DIR": "hsbc.png"
+                },
+                {
+                    "BrandName":"Lloyds Bank",
+                    "URL":"https://api.lloydsbank.com/",
+                    "IMG_DIR": "lloyds.png"
+                },
+                {
+                    "BrandName":"Nationwide Building Society",
+                    "URL":"https://locations.nationwidebranches.co.uk/",
+                    "IMG_DIR": "nationwide.png"
+                },
+                {
+                    "BrandName":"RBS",
+                    "URL":"https://openapi.rbs.co.uk/",
+                    "IMG_DIR": "rbs.png"
+                },
+                {
+                    "BrandName":"Natwest",
+                    "URL":"https://openapi.natwest.com/",
+                    "IMG_DIR": "natwest.png"
+                },
+                {
+                    "BrandName":"Santander UK PLC",
+                    "URL":"https://openbanking.santander.co.uk/sanuk/external/",
+                    "IMG_DIR": "santander.png"
+                }
+            ]
+    }
+]
