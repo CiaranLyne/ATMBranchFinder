@@ -14,7 +14,7 @@ Lloyds
 https://api.lloydsbank.com/open-banking/v2.2/atms
 
 Nationwide
-https://openapi.nationwide.co.uk/open-banking/v2.2/atms
+https://locations.nationwidebranches.co.uk/open-banking/v2.2/branches
 
 Royal Bank of Scotland
 https://openapi.rbs.co.uk/open-banking/v2.2/atms
