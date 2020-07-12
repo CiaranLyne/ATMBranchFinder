@@ -9,6 +9,7 @@ var i;
 var primaryData = [];
 
 for (i = 0; i < banks.length; i++) {
+  console.log(i);
   var data = [];
 
   //let postData = {};
