@@ -24,11 +24,11 @@ function distance(lat1,lon1,lat2,lon2) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c; // Distance in km
     return d;
-};
+}
   
 function deg2rad(deg) {
     return deg * (Math.PI/180);
-};
+}
 
 var fs = require('fs');
 
@@ -59,15 +59,15 @@ function ATMFinder(inputBrandNames,inputLoc,inputDistance) {
                         ATMArray.push(fileJSON['0']['ATM'][i]);
                 } else if (inputDistance == 0) {
                     ATMArray.push(fileJSON['0']['ATM'][i]);
-                };
-            };
-        };
+                }
+            }
+        }
     });
 
     console.log(ATMArray.length);
 
     return JSON.stringify(ATMArray);
-};
+}
 
 function BranchFinder(inputBrandNames,inputLoc,inputDistance) {
     /*
@@ -100,16 +100,16 @@ function BranchFinder(inputBrandNames,inputLoc,inputDistance) {
                             BranchArray.push(fileJSON['0']['Branch'][i]);
                     } else if (inputDistance == 0) {
                         BranchArray.push(fileJSON['0']['Branch'][i]);
-                    };
-                };
-            };
-        };
+                    }
+                }
+            }
+        }
     });
 
     console.log(BranchArray.length);
 
     return JSON.stringify(BranchArray);
-};
+}
 
 var express = require('express');
 var bodyParser = require('body-parser')
@@ -126,7 +126,7 @@ router.use(function(req, res, next) {
     next();
 });
 
-router.post("/atm", function(req, res, next){
+router.get("/atm", function(req, res, next){
     var bank = req.body.bank;
     var lat = req.body.lat;
     var lng = req.body.lng;
@@ -137,7 +137,7 @@ router.post("/atm", function(req, res, next){
     res.send(ATMFinder([bank],[lat,lng],dist));
 });
 
-router.post("/branch", function(req, res, next){
+router.get("/branch", function(req, res, next){
     var bank = req.body.bank;
     var lat = req.body.lat;
     var lng = req.body.lng;
