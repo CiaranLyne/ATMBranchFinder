@@ -1,17 +1,17 @@
 import express from "express";
 import {ATM, ATMListingModel} from "./ATMListingTypes";
-import * as fs from "fs";
+import * as AWS from 'aws-sdk';
 
-// import test from "./ATMListings/Barclays UK.json";
-const listings =  JSON.parse(fs.readFileSync("./ATMListings/Barclays UK.json", "utf-8")) as ATMListingModel[];
-const entries = prepareListings(listings);
+let entries: Entry[] = [];
+init();
+
 const router = express();
 
 router.get("/", (req, res) => {
    res.send("<html><a href='http://localhost:3000/atm?lat=55.85282300&lng=-4.22867800&dist=10'>http://localhost:3000/atm?lat=55.85282300&lng=-4.22867800&dist=10</a></html>");
 });
 
-router.get("/atm", (req, res, next) => {
+router.get("/atm", (req, res) => {
     // var bank = req.body.bank;
     const lat = parseFloat(req.query["lat"] as string);
     const lng = parseFloat(req.query["lng"] as string);
@@ -32,18 +32,35 @@ router.get("/atm", (req, res, next) => {
 const port = 3000;
 router.listen(port, () => console.log(`Listening on port ${port}.`));
 
-function prepareListings(listings: ATMListingModel[]): Entry[] {
-    return listings[0].ATM.map(x => {
-        const lat = parseFloat(x.Location.PostalAddress.GeoLocation.GeographicCoordinates.Latitude);
-        const lng = parseFloat(x.Location.PostalAddress.GeoLocation.GeographicCoordinates.Longitude);
-        return {lat, lng, atm: x};
-    })
+async function init() {
+    const listings = await getATMListings("Barclays UK.json");
+    entries = parseEntries(listings);
 }
 
 interface Entry {
     lat: number;
     lng: number;
     atm: ATM;
+}
+
+async function getATMListings(name: string): Promise<ATMListingModel> {
+    const s3: AWS.S3 = new AWS.S3();
+    const req: AWS.S3.Types.GetObjectRequest = {
+        Bucket: "branch-finder-colin",
+        Key: `ATMListings/${name}`
+    };
+    const obj = await s3.getObject(req).promise();
+    const json = (obj.Body as any).toString('utf-8');
+    const listings = JSON.parse(json) as ATMListingModel[];
+    return listings[0];
+}
+
+function parseEntries(listings: ATMListingModel): Entry[] {
+    return listings.ATM.map(x => {
+        const lat = parseFloat(x.Location.PostalAddress.GeoLocation.GeographicCoordinates.Latitude);
+        const lng = parseFloat(x.Location.PostalAddress.GeoLocation.GeographicCoordinates.Longitude);
+        return {lat, lng, atm: x};
+    })
 }
 
 //todo: find where I stole this function from
@@ -65,6 +82,3 @@ function distance(lat1: number, lon1: number, lat2: number, lon2: number): numbe
 function deg2rad(deg: number): number {
     return deg * (Math.PI/180);
 }
-
-
-// //console.log(BranchFinder(["RBS"],[55.85282300,-4.22867800],10));
