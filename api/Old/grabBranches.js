@@ -1,7 +1,7 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var fs = require("fs");
 
-var banksJSON = require("./settings.json");
+var banksJSON = require("../settings.json");
 var banks = banksJSON["0"]["Banks"];
 
 var i;
@@ -13,7 +13,7 @@ for (i = 0; i < banks.length; i++) {
   var data = [];
 
   //let postData = {};
-  var targetURL = banks[i]["URL"] + "open-banking/v2.2/atms";
+  var targetURL = banks[i]["URL"] + "open-banking/v2.2/branches";
   console.log(targetURL);
 
   var reqVal = new XMLHttpRequest();
@@ -32,7 +32,7 @@ for (i = 0; i < banks.length; i++) {
   reqVal.onload = function () {
     let data = JSON.parse(this.responseText);
 
-    fs.writeFile("ATMListings/" + this.BrandName + ".json", "[" + JSON.stringify(data.data["0"]["Brand"]["0"]) + "]", function(err) {
+    fs.writeFile("BranchListings/" + this.BrandName + ".json", "[" + JSON.stringify(data.data["0"]["Brand"]["0"]) + "]", function(err) {
       if (err) {
         console.log(err);
       }

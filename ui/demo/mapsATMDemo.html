@@ -101,28 +101,39 @@
                 console.log(lng);
 
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "http://localhost:3000/atm", true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({
-                    bank: globalBank,
+                var params = {
+                	bank: globalBank,
                     lat: lat,
                     lng: lng,
                     dist: document.getElementById("dist").value
-                }));
+                }
+
+                xhr.open("GET", "http://localhost:3000/atm" + formatParams(params), true);
+                xhr.send();
 
                 xhr.onload = function () {
+                	console.log(this.responseText);
                     let data = JSON.parse(this.responseText);
                     var n;
                     console.log(data.length);
                     for(n = 0; n < data.length; n++) {
                         bankMarkers.push(new google.maps.Marker({map: map,
-                            position: {lat: parseFloat(data[n]['Location']['PostalAddress']['GeoLocation']['GeographicCoordinates']['Latitude']),
-                            lng: parseFloat(data[n]['Location']['PostalAddress']['GeoLocation']['GeographicCoordinates']['Longitude'])},
+                            position: {lat: parseFloat(data[n]['lat']),
+                            lng: parseFloat(data[n]['lng'])},
                             icon: icons[globalBankID]
                         }));
                     };
                 };
             };
+
+            function formatParams( params ){
+  				return "?" + Object
+        		.keys(params)
+        		.map(function(key){
+          			return key+"="+encodeURIComponent(params[key])
+        		})
+        		.join("&")
+			}
         </script>
 
         <script async defer
