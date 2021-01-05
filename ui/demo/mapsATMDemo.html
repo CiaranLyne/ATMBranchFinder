@@ -21,6 +21,8 @@
 
         Distance (Km) <input type="number" name="distance" min="0" value="10" id="dist"> <br>
 
+        <span>Ugly</span>
+
         <script>
             globalBank = "Barclays UK";
             globalBankID = 0;
@@ -108,7 +110,7 @@
                     dist: document.getElementById("dist").value
                 }
 
-                xhr.open("GET", "http://localhost:3000/atm" + formatParams(params), true);
+                xhr.open("GET", "http://34.244.38.124:80/atm" + formatParams(params), true);
                 xhr.send();
 
                 xhr.onload = function () {

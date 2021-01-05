@@ -10,7 +10,7 @@ var primaryData = [];
 
 for (i = 0; i < banks.length; i++) {
   console.log(i);
-  var data = [];
+  //var data = [];
 
   //let postData = {};
   var targetURL = banks[i]["URL"] + "open-banking/v2.2/atms";

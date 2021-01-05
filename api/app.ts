@@ -13,7 +13,7 @@ const router = express();
 router.use(cors());
 
 router.get("/", (req, res) => {
-   res.send("<html><a href='http://localhost:3000/atm?lat=55.85282300&lng=-4.22867800&dist=10'>http://localhost:3000/atm?lat=55.85282300&lng=-4.22867800&dist=10</a></html>");
+   res.send("<html><a href='http://ciaranlyne.net:80/atm?lat=55.85282300&lng=-4.22867800&dist=10'>http://ciaranlyne.net:80/atm?lat=55.85282300&lng=-4.22867800&dist=10</a></html>");
 });
 
 router.get("/atm", (req, res) => {
@@ -70,7 +70,7 @@ router.get("/branch", (req, res) => {
     res.send(response);
 });
 
-const port = 3000;
+const port = 80;
 router.listen(port, () => console.log(`Listening on port ${port}.`));
 
 async function init() {
