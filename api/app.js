@@ -76,7 +76,7 @@ router.get("/branch", (req, res) => {
     }
     res.send(response);
 });
-const port = 80;
+const port = 3000;
 router.listen(port, () => console.log(`Listening on port ${port}.`));
 async function init() {
     const settingsStored = await getSettings();
